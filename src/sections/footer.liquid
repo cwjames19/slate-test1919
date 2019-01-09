@@ -32,14 +32,17 @@
     {% endunless %}
   {% endif %}
 
-  {%- assign footer_linklist = section.settings.footer_linklist -%}
-  {% if linklists[footer_linklist].links.size > 0 %}
-    <ul>
-      {% for link in linklists[footer_linklist].links %}
-        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+  {% comment %}
+    {%- assign footer_linklist = section.settings.footer_linklist -%}
+    {% if linklists[footer_linklist].links.size > 0 %}
+      <ul>
+        {% for link in linklists[footer_linklist].links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endcomment %}
+
 
   <div>
     <small>{{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}. {{ powered_by_link }}</small>
@@ -52,13 +55,13 @@
     "settings": [
       {
         "type": "link_list",
-        "id": "footer_linklist",
+        "id": "footer_linklist99",
         "label": "First menu",
         "default": "footer"
       },
       {
         "type": "checkbox",
-        "id": "show_payment_icons",
+        "id": "show_payment_icons99",
         "label": "Show payment icons",
         "default": false
       }
