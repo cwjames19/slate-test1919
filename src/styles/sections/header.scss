@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  width: 100%;
+  flex-flow: column nowrap;
+}
+
+.header__announcement,
+.header__banner {
+  display: flex;
+  width: 100%;
+  flex-flow: row nowrap;
+}
+
+.header__banner {
+  justify-content: space-between;
+
+  &__name {
+    h1 a {
+      font-size: $font-size-headings;
+    }
+  }
+}
