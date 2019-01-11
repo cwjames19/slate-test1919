@@ -1,16 +1,46 @@
 // Text colors
-$color-body-text: var(--color-body-text);
+$color-text-headings-links: var(--color-text-headings-links);
+$color-text-body: var(--color-text-body);
+$color-text-sale-price: var(--color-text-sale-price);
 
-// Background colors
-$color-body: var(--color-main-background);
+// Button colors
+$color-buttons-primary: var(--color-buttons-primary);
+$color-labels-primary: var(--color-labels-primary);
+$color-labels-secondary: var(--color-labels-secondary);
+$color-borders: var(--color-labels-secondary);
 
-// Placeholders
-$placeholder-color-foreground: #161d25;
-$placeholder-color-background: #f9fafb;
+// Form colors
+$color-form-text: var(--color-form-text);
+$color-form-borders: var(--color-form-borders);
+$color-form-bg: var(--color-form-bg);
 
-// Other colors
-$color-accent: var(--color-accent);
-$color-border: var(--color-border);
+// Announcement colors
+$color-announcement-bg: var(--color-announcement-bg);
+$color-announcement-text: var(--color-announcement-text);
+
+// Image overlay colors and opacity
+$color-image-overlay-text: var(--color-image-overlay-text);
+$color-image-overlay-bg: var(--color-image-overlay-bg);
+$opacity-image-overlay: var(--opacity-image-overlay);
+
+// Page colors
+$color-page-borders: var(--color-page-borders);
+$color-page-bg: var(--color-page-bg);
+
+// Typography
+$font-headings-buttons: var(--font-headings-buttons);
+$font-headings-size: var(--font-headings-size);
+$font-headings-weight: var(--font-headings-weight);
+$font-body: var(--font-body);
+$font-body-style: var(--font-body-style);
+$font-body-weight: var(--font-body-weight);
+$font-body-size: var(--font-body-size);
+$font-weight-products-bold: var(--font-weight-products-bold);
+$font-body-bold-weight: var(--font-body-bold-weight);
+
+// =============================================================================
+// EVERYTHING BELOW HERE CAME BY DEFAULT AND CAN STAY
+// =============================================================================
 
 // Helper colors for form error states
 $color-disabled: #000000;
@@ -19,13 +49,6 @@ $color-error: #ff6d6d;
 $color-error-bg: #ffffff;
 $color-success: #000000;
 $color-success-bg: #000000;
-
-// Typography
-$font-heading: var(--font-heading);
-$font-body: var(--font-body);
-$font-body-weight: var(--font-body-weight);
-$font-body-style: var(--font-body-style);
-$font-body-bold-weight: var(--font-body-bold-weight);
 
 // Transitions
 $transition-duration: 250ms;
@@ -39,22 +62,22 @@ $grid-max-width: 73.75em;
 $grid-gutter: 30px;
 
 // Breakpoints used with the media-query mixin
-$small: 'small';
-$medium: 'medium';
-$medium-down: 'medium-down';
-$medium-up: 'medium-up';
-$large: 'large';
-$large-down: 'large-down';
-$large-up: 'large-up';
-$widescreen: 'widescreen';
+$small: "small";
+$medium: "medium";
+$medium-down: "medium-down";
+$medium-up: "medium-up";
+$large: "large";
+$large-down: "large-down";
+$large-up: "large-up";
+$widescreen: "widescreen";
 
 $breakpoints: (
-  $small '(max-width: #{$grid-medium - 1})',
-  $medium '(min-width: #{$grid-medium}) and (max-width: #{$grid-large - 1})',
-  $medium-down '(max-width: #{$grid-large - 1})',
-  $medium-up '(min-width: #{$grid-medium})',
-  $large '(min-width: #{$grid-large}) and (max-width: #{$grid-widescreen - 1})',
-  $large-down '(max-width: #{$grid-widescreen - 1})',
-  $large-up '(min-width: #{$grid-large})',
-  $widescreen '(min-width: #{$grid-widescreen})'
+  $small "(max-width: #{$grid-medium - 1})",
+  $medium "(min-width: #{$grid-medium}) and (max-width: #{$grid-large - 1})",
+  $medium-down "(max-width: #{$grid-large - 1})",
+  $medium-up "(min-width: #{$grid-medium})",
+  $large "(min-width: #{$grid-large}) and (max-width: #{$grid-widescreen - 1})",
+  $large-down "(max-width: #{$grid-widescreen - 1})",
+  $large-up "(min-width: #{$grid-large})",
+  $widescreen "(min-width: #{$grid-widescreen})"
 );

@@ -10,121 +10,116 @@
   Theme Store optional settings
   - Home page only: only shows on the home page
 {%- endcomment -%}
-<section data-section-id="{{ section.id }}" data-section-type="header">
+<section class="header__container" data-section-id="{{ section.id }}" data-section-type="header">
   {%- if section.settings.announcement_bar_enabled -%}
-    <div>
+    <div class="header__announcement" style="background-color: {{ section.settings.color_announcement_bg }}; ">
       {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
         {%- if section.settings.announcement_bar_link != blank -%}
-          <a href="{{ section.settings.announcement_bar_link }}">
+          <a class="header__announcement__content" id="announcement-link" href="{{ section.settings.announcement_bar_link }}" style="color: {{ section.settings.color_announcement_text }}; " >
             {{ section.settings.announcement_bar_text | escape }}
           </a>
         {%- else -%}
-          <p>{{ section.settings.announcement_bar_text | escape }}</p>
+          <p class="header__announcement__content" style="color: {{ section.settings.color_announcement_text }}; ">{{ section.settings.announcement_bar_text | escape }}</p>
         {%- endif -%}
       {%- endif -%}
     </div>
   {%- endif -%}
 
-  <header role="banner">
-    {% if template.name == 'index' %}
-      <h1>
-    {% else %}
-      <div class="h1">
-    {% endif %}
-        <a href="/" class="logo-image">
+  <header class="header-main" role="banner">
+    <div class="header-main__name" >
+      <h1 class="header">
+        <a href="/" class="header-main__logo logo-image">
           {% if section.settings.logo != blank %}
             {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
             <img src="{{ section.settings.logo | img_url: image_size }}"
                 srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
                 alt="{{ section.settings.logo.alt | default: shop.name }}">
           {% else %}
-            {{ shop.name }}
+            {{ shop.name | upcase }}
           {% endif %}
         </a>
-    {% if template.name == 'index' %}
       </h1>
-    {% else %}
-      </div>
-    {% endif %}
+    </div>
 
-    <a href="/cart">
-      {% include 'icon-cart' %}
-      {{ 'layout.cart.title' | t }}
-      ({{ cart.item_count }} {{ 'layout.cart.items_count' | t: count: cart.item_count }})
-    </a>
-
-    {% if shop.customer_accounts_enabled %}
+    <nav class="header-main__site-nav" role="navigation">
       <ul>
-        {% if customer %}
-          <li>
-            {% if customer.first_name != blank %}
-              {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-              {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+        {% for link in linklists[section.settings.menu].links %}
+          {% if link.links != blank %}
+            {% if link.child_active %}
+              <li class="link--active">
             {% else %}
-              <a href="/account">{{ 'layout.customer.account' | t }}</a>
+              <li>
             {% endif %}
-          </li>
-          <li>
-            {{ 'layout.customer.log_out' | t | customer_logout_link }}
-          </li>
-        {% else %}
-          <li>
-            {{ 'layout.customer.log_in' | t | customer_login_link }}
-          </li>
-          <li>
-            {{ 'layout.customer.create_account' | t | customer_register_link }}
-          </li>
-        {% endif %}
+                <a href="{{ link.url }}">
+                  <span>
+                    {{ link.title }}
+                  </span>
+                  {% include 'icon-arrow-down' %}
+                </a>
+                <ul>
+                  {% for childlink in link.links %}
+                    {% if childlink.active %}
+                      <li class="link--active">
+                    {% else %}
+                      <li>
+                    {% endif %}
+                      <a href="{{ childlink.url }}">
+                        <span>
+                          {{ childlink.title }}
+                        </span>
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+            </li>
+          {% else %}
+            {% if link.active %}
+              <li class="link--active">
+            {% else %}
+              <li>
+            {% endif %}
+                <a href="{{ link.url }}">
+                  <span>
+                    {{ link.title }}
+                  </span>
+                </a>
+              </li>
+          {% endif %}
+        {% endfor %}
       </ul>
-    {% endif %}
+    </nav>
 
-    <form action="/search" method="get" role="search">
-      <label for="Search-{{ section.id }}" class="label-hidden">
-        {{ 'general.search.placeholder' | t }}
-      </label>
+    <div class="header-main__button-group" >
+        <a>
+          {% include 'icon-search', icon_class: "icon-header" %}
+          <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
+        </a>
 
-      <input type="search"
-        name="q"
-        id="Search-{{ section.id }}"
-        value="{{ search.terms | escape }}"
-        placeholder="{{ 'general.search.placeholder' | t }}">
-
-      <button type="submit" class="button">
-        {% include 'icon-search' %}
-        <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
-      </button>
-    </form>
-  </header>
-
-  <nav role="navigation">
-    <ul>
-      {% for link in linklists[section.settings.menu].links %}
-        {% if link.links != blank %}
-          <li>
-            <a href="{{ link.url }}">
-              {{ link.title }}
-              {% include 'icon-arrow-down' %}
-            </a>
-            <ul>
-              {% for childlink in link.links %}
-                <li>
-                  <a href="{{ childlink.url }}">
-                    {{ childlink.title }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </li>
-        {% else %}
-          <li>
-            <a href="{{ link.url }}">
-              {{ link.title }}
-            </a>
-          </li>
+        {% if shop.customer_accounts_enabled %}
+          {% if customer %}
+            <a class="header-main__button-group__customer" href="/account">{%- include 'icon-account', icon_class: "icon-header" -%}</a>
+          {% else %}
+            {% capture icon_person %}
+              {% include 'icon-account', icon_class: "icon-header" %}
+            {% endcapture %}
+            {{ icon_person | customer_login_link }}
+          {% endif %}
         {% endif %}
-      {% endfor %}
-    </ul>
-  </nav>
+
+        <a class="header-main__button-group__cart" href="/cart">
+          {% include 'icon-shopping-bag', icon_class: "icon-header" %}
+          {% if cart.item_count != 0 %}
+            {% comment %} <div> {% endcomment %}
+              <div class="header-main__button-group__cart__count" >
+                <div>
+                  {{ cart.item_count }}
+                </div>
+              </div>
+            {% comment %} </div> {% endcomment %}
+          {% endif %}
+        </a>
+    </div>
+  </header>
 </section>
 
 {% if section.settings.logo != blank %}
@@ -140,6 +135,31 @@
   {
     "name": "Header",
     "settings": [
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "min": 50,
+        "max": 450,
+        "step": 10,
+        "unit": "px",
+        "label": "Custom logo width",
+        "default": 250
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu",
+        "default": "main-menu"
+      },
       {
         "type": "header",
         "content": "Announcement bar"
@@ -169,29 +189,16 @@
         "info": "Optional"
       },
       {
-        "type": "header",
-        "content": "Header"
+        "type": "color",
+        "id": "color_announcement_bg",
+        "label": "Bar",
+        "default": "#7796a8"
       },
       {
-        "type": "image_picker",
-        "id": "logo",
-        "label": "Logo image"
-      },
-      {
-        "type": "range",
-        "id": "logo_max_width",
-        "min": 50,
-        "max": 450,
-        "step": 10,
-        "unit": "px",
-        "label": "Custom logo width",
-        "default": 250
-      },
-      {
-        "type": "link_list",
-        "id": "menu",
-        "label": "Menu",
-        "default": "main-menu"
+        "type": "color",
+        "id": "color_announcement_text",
+        "label": "Text",
+        "default": "#ffffff"
       }
     ]
   }
