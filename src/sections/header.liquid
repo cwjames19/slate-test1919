@@ -97,7 +97,7 @@
 
         {% if shop.customer_accounts_enabled %}
           {% if customer %}
-            <a class="header-main__button-group__customer" href="/account">{%- include 'icon-account', icon_class: "icon-header" -%}</a>
+            <a class="header-main__button-group__customer" title="account" href="/account" alt="">{%- include 'icon-account', icon_class: "icon-header" -%}</a>
           {% else %}
             {% capture icon_person %}
               {% include 'icon-account', icon_class: "icon-header" %}
@@ -108,14 +108,13 @@
 
         <a class="header-main__button-group__cart" href="/cart">
           {% include 'icon-shopping-bag', icon_class: "icon-header" %}
+          <span class="icon-fallback-text">{{ 'cart.general.title' | t }}</span>
           {% if cart.item_count != 0 %}
-            {% comment %} <div> {% endcomment %}
-              <div class="header-main__button-group__cart__count" >
-                <div>
-                  {{ cart.item_count }}
-                </div>
+            <div class="header-main__button-group__cart__count" >
+              <div>
+                {{ cart.item_count }}
               </div>
-            {% comment %} </div> {% endcomment %}
+            </div>
           {% endif %}
         </a>
     </div>
