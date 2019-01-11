@@ -14,6 +14,10 @@ $color-form-text: var(--color-form-text);
 $color-form-borders: var(--color-form-borders);
 $color-form-bg: var(--color-form-bg);
 
+// Announcement colors
+$color-announcement-bg: var(--color-announcement-bg);
+$color-announcement-text: var(--color-announcement-text);
+
 // Image overlay colors and opacity
 $color-image-overlay-text: var(--color-image-overlay-text);
 $color-image-overlay-bg: var(--color-image-overlay-bg);
@@ -25,11 +29,12 @@ $color-page-bg: var(--color-page-bg);
 
 // Typography
 $font-headings-buttons: var(--font-headings-buttons);
-$font-size-headings: var(--font-size-headings);
+$font-headings-size: var(--font-headings-size);
+$font-headings-weight: var(--font-headings-weight);
 $font-body: var(--font-body);
 $font-body-style: var(--font-body-style);
 $font-body-weight: var(--font-body-weight);
-$font-size-body: var(--font-size-body);
+$font-body-size: var(--font-body-size);
 $font-weight-products-bold: var(--font-weight-products-bold);
 $font-body-bold-weight: var(--font-body-bold-weight);
 

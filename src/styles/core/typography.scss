@@ -9,13 +9,30 @@ body {
   font-size: 1.6rem;
 }
 
+p,
+a,
+input,
+textarea,
+select {
+  font-weight: $font-body-weight;
+  margin: 0;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
+  padding: 0;
   font-family: $font-headings-buttons;
+  font-size: $font-headings-size;
+  font-weight: $font-headings-weight;
+}
+
+h1.header,
+h2.header {
+  margin: 15px 0;
 }
 
 body,
@@ -25,6 +42,15 @@ button,
 select {
   -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
+}
+
+a {
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: $color-text-headings-links;
+  }
 }
 
 a:focus {

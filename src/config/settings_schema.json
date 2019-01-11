@@ -17,7 +17,7 @@
       {
         "type": "color",
         "id": "color_text_headings_links",
-        "label": "Headings and Links",
+        "label": "Headings and links",
         "default": "#3d4246"
       },
       {
@@ -130,12 +130,12 @@
       {
         "type": "font_picker",
         "id": "font_headings_buttons",
-        "default": "work_sans_n6",
-        "label": "Font"
+        "label": "Font",
+        "default": "work_sans_n1"
       },
       {
         "type": "range",
-        "id": "font_size_headings",
+        "id": "font_headings_size",
         "label": "Heading base size",
         "min": 20,
         "max": 36,
@@ -150,12 +150,12 @@
       {
         "type": "font_picker",
         "id": "font_body",
-        "default": "work_sans_n4",
-        "label": "Font"
+        "label": "Font",
+        "default": "work_sans_n1"
       },
       {
         "type": "range",
-        "id": "font_size_body",
+        "id": "font_body_size",
         "label": "Base size",
         "min": 14,
         "max": 20,
