@@ -1,0 +1,72 @@
+{% schema %}
+
+  {
+    "name": "Footer",
+    "max_blocks": 4,
+    "blocks": [
+      {
+        "name": "Menu",
+        "type": "menu",
+        "settings": [
+          {
+            "id": "footer_menu_heading",
+            "type": "text",
+            "label": "Heading",
+            "default": "Quick Links"
+          },
+          {
+            "id": "footer_menu_link_list",
+            "type": "link_list",
+            "label": "Menu"
+          }
+        ]
+      },
+      { 
+        "name": "Text",
+        "type": "text",
+        "settings": [
+          {
+            "id": "footer_text_heading",
+            "type": "text",
+            "label": "Heading"
+          },
+          {
+            "id": "footer_text_textarea",
+            "type": "textarea",
+            "label": "Text",
+            "default": "Share store details, promotions, or brand content with your customers."
+          }
+        ]
+      },
+      {
+        "name": "Newsletter",
+        "type": "newsletter",
+        "limit": 1,
+        "settings": [
+          {
+            "id": "footer_newsletter_heading",
+            "type": "text",
+            "label": "Heading",
+            "default": "Newsletter",
+            "info": "Subscribers will be added to your "accepts marketing" [customer list] (https://slate-test1919-cameron.myshopify.com/admin/customers?query=&accepts_marketing=1)."
+          }
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "footer_linklist99",
+        "label": "First menu",
+        "default": "footer"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons99",
+        "label": "Show payment icons",
+        "default": false
+      }
+    ]
+  }
+
+{% endschema %}
