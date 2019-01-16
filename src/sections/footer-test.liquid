@@ -1,10 +1,6 @@
-<footer class="site-footer__container">
-  THIS IS A TEST OF FOOTER-TEST.
-  <div class="site-footer">
+<footer>
 
-  </div>
-
-  {% comment %} {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
+  {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
   <ul>
     {% for social in social_accounts %}
       {%- assign social_handle = social | handleize -%}
@@ -46,75 +42,30 @@
       </ul>
     {% endif %}
   {% endcomment %}
-  <hr class="site-footer__hr" />
 
-  <div class="site-footer__footer">
-    <small>&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }} {{ powered_by_link }}</small>
+
+  <div>
+    <small>THIS IS A TEST OF FOOTER-TEST. {{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }} THIS IS A TEST OF FOOTER-TEST, {{ shop.name | link_to: '/' }}. {{ powered_by_link }}</small>
   </div>
 </footer>
 
-
-
 {% schema %}
-    {
-        "name": "Featured products",
-        "presets": [
-            {
-                "category": "Homepage",
-                "name": "Featured products"
-            }
-        ],
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "footer_linklist99",
+        "label": "First menu",
+        "default": "footer"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons99",
+        "label": "Show payment icons",
+        "default": false
+      }
+    ]
+  }
 
-        "settings": [
-            {
-                "id": "bottomLabel",
-                "type": "text",
-                "label": "Bottom link label"
-            },
-
-            {
-                "id": "bottomUrl",
-                "type": "url",
-                "label": "Bottom link to"
-            }
-        ],
-
-        "blocks": [
-            {
-                "type": "products",
-                "name": "Products",
-                "settings": [
-                    {
-                        "id": "product",
-                        "type": "product",
-                        "label": "Select product"
-                    },
-
-                    {
-                        "id": "productsDescription",
-                        "type": "richtext",
-                        "label": "Product description override"
-                    },
-
-                    {
-                        "id": "productsImage",
-                        "type": "image_picker",
-                        "label": "Product image override"
-                    },
-
-                    {
-                        "id": "productLabel",
-                        "type": "text",
-                        "label": "Product label"
-                    },
-
-                    {
-                        "id": "productsImageHover",
-                        "type": "image_picker",
-                        "label": "Product image override hover"
-                    }
-                ]
-            }
-        ]
-    }
 {% endschema %}
