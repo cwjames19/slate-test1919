@@ -54,18 +54,86 @@
     "name": "Footer",
     "settings": [
       {
-        "type": "link_list",
-        "id": "footer_linklist99",
-        "label": "First menu",
-        "default": "footer"
+        "type": "header",
+        "content": "Payment Methods"
       },
       {
         "type": "checkbox",
-        "id": "show_payment_icons99",
+        "id": "footer_payment_methods",
         "label": "Show payment icons",
         "default": false
+      },
+      {
+        "type": "header",
+        "content": "Color"
+      },
+      {
+        "type": "color",
+        "id": "footer_color_bg",
+        "label": "Background",
+        "default": "#f5f5f5"
+      },
+      {
+        "type": "color",
+        "id": "footer_color_text",
+        "label": "Text",
+        "default": "#3d4246"
+      }
+    ],
+    "max_blocks": 4,
+    "blocks": [
+      {
+        "name": "Quick links",
+        "type": "menu",
+        "settings": [
+          {
+            "type": "text",
+            "id": "menu_heading",
+            "label": "Heading",
+            "default": "Quick links"
+          },
+          {
+            "type": "link_list",
+            "id": "menu_link_list",
+            "label": "Menu",
+            "default": "main-menu"
+          }
+        ]
+      },
+      {
+        "name": "Talk about your business",
+        "type": "text",
+        "settings": [
+          {
+            "type": "text",
+            "id": "text_heading",
+            "label": "Heading",
+            "default": "Talk about your business"
+          },
+          {
+            "type": "richtext",
+            "id": "text_richtext",
+            "label": "Text",
+            "default": "<p>Share store details, promotions, or brand content with your customers.</p>"
+          }
+        ]
+      },
+      {
+        "name": "Newsletter signup",
+        "type": "newsletter_signup",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "newsletter_signup_heading",
+            "label": "Heading",
+            "default": "Newsletter"
+          }
+        ]
       }
     ]
   }
 
 {% endschema %}
+
+
