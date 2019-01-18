@@ -1,5 +1,4 @@
-<footer>
-
+<footer id="footer-id" >
   {% if section.blocks.size != 0 %}
     {% assign no_newsletter = false %}
     {% for block in section.blocks %}
@@ -165,5 +164,15 @@
   }
 
 {% endschema %}
+
+  <style>
+    #footer-id {
+      background-color: {{section.settings.footer_color_bg}};
+    }
+
+    p, a, a:link, a:visited {
+      color: {{section.settings.footer_color_text}};
+    }
+  </style>
 
 
