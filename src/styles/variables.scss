@@ -29,7 +29,7 @@ $color-page-bg: var(--color-page-bg);
 
 // Typography
 $font-headings-buttons: var(--font-headings-buttons);
-$font-headings-size: var(--font-headings-size);
+$font-headings-factor: var(--font-headings-factor);
 $font-headings-weight: var(--font-headings-weight);
 $font-body: var(--font-body);
 $font-body-style: var(--font-body-style);
@@ -81,3 +81,6 @@ $breakpoints: (
   $large-up "(min-width: #{$grid-large})",
   $widescreen "(min-width: #{$grid-widescreen})"
 );
+
+// constant variables for body-mod function
+$factor: 0.0625;
