@@ -1,3 +1,5 @@
+$first-and-third-header-div-width: 220px;
+
 .header__container {
   display: flex;
   width: 100%;
@@ -21,8 +23,9 @@
 }
 
 .header-main {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
   align-items: center;
   height: auto;
   min-height: 80px;
@@ -39,16 +42,22 @@
   &__name {
     justify-self: start;
     align-self: center;
+    width: $first-and-third-header-div-width;
     font-family: $font-body;
     letter-spacing: 2px;
     line-height: 24px;
   }
 
   &__site-nav {
+    flex-grow: 1;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     justify-self: center;
+
+    ul {
+      padding: 0;
+    }
 
     li {
       display: inline-block;
@@ -72,6 +81,7 @@
     display: flex;
     justify-content: flex-end;
     flex-flow: nowrap;
+    width: $first-and-third-header-div-width;
 
     a {
       margin: 0;
