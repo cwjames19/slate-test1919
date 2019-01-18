@@ -53,10 +53,6 @@ h6 {
   @include calc-font-size(1.125rem, $font-headings-factor);
 }
 
-.header {
-  margin: 15px 0;
-}
-
 body,
 input,
 textarea,

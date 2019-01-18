@@ -10,7 +10,7 @@
   Theme Store optional settings
   - Home page only: only shows on the home page
 {%- endcomment -%}
-<section class="header__container" data-section-id="{{ section.id }}" data-section-type="header">
+<section class="header__outer-container" data-section-id="{{ section.id }}" data-section-type="header">
   {%- if section.settings.announcement_bar_enabled -%}
     <div class="header__announcement" style="background-color: {{ section.settings.color_announcement_bg }}; ">
       {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
@@ -26,98 +26,116 @@
   {%- endif -%}
 
   <header class="header-main" role="banner">
-    <div class="header-main__name" >
-      <h1 class="header">
-        <a href="/" class="header-main__logo logo-image">
-          {% if section.settings.logo != blank %}
-            {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
-            <img src="{{ section.settings.logo | img_url: image_size }}"
-                srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
-                alt="{{ section.settings.logo.alt | default: shop.name }}">
-          {% else %}
-            {{ shop.name | upcase }}
-          {% endif %}
-        </a>
-      </h1>
-    </div>
+    <div class="header-main__inner-container">
+      <div class="header-main__name" >
+        <h1>
+          <a href="/" class="header-main__logo logo-image">
+            {% if section.settings.logo != blank %}
+              {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+              <img src="{{ section.settings.logo | img_url: image_size }}"
+                  srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                  alt="{{ section.settings.logo.alt | default: shop.name }}">
+            {% else %}
+              {{ shop.name | upcase }}
+            {% endif %}
+          </a>
+        </h1>
+      </div>
 
-    <nav class="header-main__site-nav" role="navigation">
-      <ul>
-        {% for link in linklists[section.settings.menu].links %}
-          {% if link.links != blank %}
-            {% if link.child_active %}
-              <li class="link--active">
-            {% else %}
-              <li>
-            {% endif %}
-                <a href="{{ link.url }}">
-                  <span>
-                    {{ link.title }}
-                  </span>
-                  {% include 'icon-arrow-down' %}
-                </a>
-                <ul>
-                  {% for childlink in link.links %}
-                    {% if childlink.active %}
-                      <li class="link--active">
-                    {% else %}
-                      <li>
-                    {% endif %}
-                      <a href="{{ childlink.url }}">
-                        <span>
-                          {{ childlink.title }}
-                        </span>
-                      </a>
-                    </li>
-                  {% endfor %}
-                </ul>
-            </li>
-          {% else %}
-            {% if link.active %}
-              <li class="link--active">
-            {% else %}
-              <li>
-            {% endif %}
-                <a href="{{ link.url }}">
-                  <span>
-                    {{ link.title }}
-                  </span>
-                </a>
+      <nav class="header-main__site-nav--desktop" role="navigation">
+        <ul>
+          {% for link in linklists[section.settings.menu].links %}
+            {% if link.links != blank %}
+              {% if link.child_active %}
+                <li class="link--active">
+              {% else %}
+                <li>
+              {% endif %}
+                  <a href="{{ link.url }}">
+                    <span>
+                      {{ link.title }}
+                    </span>
+                    {% include 'icon-arrow-down' %}
+                  </a>
+                  <ul>
+                    {% for childlink in link.links %}
+                      {% if childlink.active %}
+                        <li class="link--active">
+                      {% else %}
+                        <li>
+                      {% endif %}
+                        <a href="{{ childlink.url }}">
+                          <span>
+                            {{ childlink.title }}
+                          </span>
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
               </li>
+            {% else %}
+              {% if link.active %}
+                <li class="link--active">
+              {% else %}
+                <li>
+              {% endif %}
+                  <a href="{{ link.url }}">
+                    <span>
+                      {{ link.title }}
+                    </span>
+                  </a>
+                </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <div class="header-main__button-group" >
+          <a>
+            {% include 'icon-search', icon_class: "icon-header" %}
+            <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
+          </a>
+
+          {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+              <a class="header-main__button-group__customer" title="account" href="/account" alt="">{%- include 'icon-account', icon_class: "icon-header" -%}</a>
+            {% else %}
+              {% capture icon_person %}
+                {% include 'icon-account', icon_class: "icon-header" %}
+              {% endcapture %}
+              {{ icon_person | customer_login_link }}
+            {% endif %}
           {% endif %}
+
+          <a class="header-main__button-group__cart" href="/cart">
+            {% include 'icon-shopping-bag', icon_class: "icon-header" %}
+            <span class="icon-fallback-text">{{ 'cart.general.title' | t }}</span>
+            {% if cart.item_count != 0 %}
+              <div class="header-main__button-group__cart__count" >
+                <div>
+                  {{ cart.item_count }}
+                </div>
+              </div>
+            {% endif %}
+          </a>
+      </div>
+      <div class="header-main__site-nav--mobile-access">
+        <a>
+          {% include 'icon-hamburger', icon_class: "icon-header" %}
+        </a>
+      </div>
+    </div>
+    <nav class="header-main__site-nav--mobile">
+      <ul>
+        {% for link in linklists[settings.menu].links %}
+          <li>
+            <a href="{{ link.url }}">
+              <span>{{ link.title }}</span>
+            </a>
+          </li>
         {% endfor %}
       </ul>
     </nav>
-
-    <div class="header-main__button-group" >
-        <a>
-          {% include 'icon-search', icon_class: "icon-header" %}
-          <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
-        </a>
-
-        {% if shop.customer_accounts_enabled %}
-          {% if customer %}
-            <a class="header-main__button-group__customer" title="account" href="/account" alt="">{%- include 'icon-account', icon_class: "icon-header" -%}</a>
-          {% else %}
-            {% capture icon_person %}
-              {% include 'icon-account', icon_class: "icon-header" %}
-            {% endcapture %}
-            {{ icon_person | customer_login_link }}
-          {% endif %}
-        {% endif %}
-
-        <a class="header-main__button-group__cart" href="/cart">
-          {% include 'icon-shopping-bag', icon_class: "icon-header" %}
-          <span class="icon-fallback-text">{{ 'cart.general.title' | t }}</span>
-          {% if cart.item_count != 0 %}
-            <div class="header-main__button-group__cart__count" >
-              <div>
-                {{ cart.item_count }}
-              </div>
-            </div>
-          {% endif %}
-        </a>
-    </div>
   </header>
 </section>
 
