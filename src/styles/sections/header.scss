@@ -143,6 +143,47 @@ header {
 
   &__site-nav--mobile-access {
     display: none;
+    height: 27px;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    a {
+      display: block;
+      height: auto;
+
+      span:first-child {
+        display: inline-block;
+
+        svg {
+          width: 22px;
+          height: 23px;
+        }
+      }
+
+      span:last-child {
+        display: none;
+
+        svg {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+
+    &.active {
+      span:first-child {
+        display: none;
+      }
+
+      span:last-child {
+        display: inline-block;
+      }
+    }
   }
 }
 
@@ -224,24 +265,6 @@ header {
 
     &__site-nav--mobile-access {
       display: block;
-      height: 27px;
-      flex-basis: auto;
-      flex-grow: 0;
-      flex-shrink: 0;
-
-      a {
-        display: block;
-        height: auto;
-
-        svg {
-          width: 22px;
-          height: 23px
-        }
-      }
-
-      &:hover {
-        cursor: pointer;
-      }
     }
   }
 }

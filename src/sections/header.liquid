@@ -120,7 +120,8 @@
     </div>
     <div class="header-main__site-nav--mobile-access">
       <a>
-        {% include 'icon-hamburger', icon_class: "icon-header" %}
+        <span>{% include 'icon-hamburger', icon_class: "icon-header" %}</span>
+        <span>{% include 'icon-close', icon_class: "icon-header" %}</span>
       </a>
     </div>
   </header>
@@ -147,6 +148,7 @@
 
   let handleMobileAccessClick = function(ev) {
     navMobile.classList.toggle("active");
+    mobileAccess.classList.toggle("active");
   }
 
   const handleDOMContentLoaded = function() {
