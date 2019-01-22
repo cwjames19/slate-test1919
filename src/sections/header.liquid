@@ -10,7 +10,7 @@
   Theme Store optional settings
   - Home page only: only shows on the home page
 {%- endcomment -%}
-<section class="header__container" data-section-id="{{ section.id }}" data-section-type="header">
+<section class="header__outer-container" data-section-id="{{ section.id }}" data-section-type="header">
   {%- if section.settings.announcement_bar_enabled -%}
     <div class="header__announcement" style="background-color: {{ section.settings.color_announcement_bg }}; ">
       {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
@@ -27,7 +27,7 @@
 
   <header class="header-main" role="banner">
     <div class="header-main__name" >
-      <h1 class="header">
+      <h1>
         <a href="/" class="header-main__logo logo-image">
           {% if section.settings.logo != blank %}
             {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
@@ -41,7 +41,7 @@
       </h1>
     </div>
 
-    <nav class="header-main__site-nav" role="navigation">
+    <nav class="header-main__site-nav--desktop" role="navigation">
       <ul>
         {% for link in linklists[section.settings.menu].links %}
           {% if link.links != blank %}
@@ -118,8 +118,43 @@
           {% endif %}
         </a>
     </div>
+    <div class="header-main__site-nav--mobile-access">
+      <a>
+        {% include 'icon-hamburger', icon_class: "icon-header" %}
+      </a>
+    </div>
   </header>
+  <nav class="site-nav--mobile--visible">
+    <ul>
+      {% for link in linklists[section.settings.menu].links %}
+        {% if link.active %}
+          <li class="link--active">
+        {% else %}
+          <li>
+        {% endif %}
+            <a href="{{ link.url }}">
+              <span>{{ link.title }}</span>
+            </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
 </section>
+
+<script>
+  const mobileAccess = document.getElementsByClassName('header-main__site-nav--mobile-access')[0];
+  const navMobile = document.getElementsByClassName('site-nav--mobile--visible')[0];
+
+  let handleMobileAccessClick = function(ev) {
+    navMobile.classList.toggle("active");
+  }
+
+  const handleDOMContentLoaded = function() {
+    mobileAccess.addEventListener('click', handleMobileAccessClick);
+  };
+
+  document.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
+</script>
 
 {% if section.settings.logo != blank %}
   <style>

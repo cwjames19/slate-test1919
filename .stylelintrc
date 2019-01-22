@@ -10,6 +10,7 @@
     "selector-max-type": null,
     "selector-max-combinators": null,
     "selector-max-class": null,
-    "selector-max-specificity": null
+    "selector-max-specificity": null,
+    "selector-max-compound-selectors": null
   }
 }
