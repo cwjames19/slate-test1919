@@ -27,7 +27,7 @@
 
   <header class="header-main" role="banner">
     <div class="header-main__name" >
-      <h1>
+      <h6>
         <a href="/" class="header-main__logo logo-image">
           {% if section.settings.logo != blank %}
             {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
@@ -38,7 +38,7 @@
             {{ shop.name | upcase }}
           {% endif %}
         </a>
-      </h1>
+      </h6>
     </div>
 
     <nav class="header-main__site-nav--desktop" role="navigation">
