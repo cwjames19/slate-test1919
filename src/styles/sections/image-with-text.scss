@@ -12,7 +12,14 @@
 .image-with-text__text {
   display: block;
   flex: 0 1 50%;
-  padding: 35px 0 35px 35px;
+
+  &:first-child {
+    padding: 35px 35px 35px 0;
+  }
+
+  &:last-child {
+    padding: 35px 0 35px 35px;
+  }
 
   h1, h2, h3, h4, h5, h6 {
     margin: 0 0 17.5px;
@@ -37,15 +44,19 @@
   }
 
   .image-with-text__text {
-    flex: 1 1 100%;
-    padding: 35px 0 0;
+    &:first-child,
+    &:last-child {
+      flex: 1 1 100%;
+      padding: 35px 0 0;
+      order: 2;
 
-    h1, h2, h3, h4, h5, h6 {
-      font-size: 1.25rem;
-    }
+      h1, h2, h3, h4, h5, h6 {
+        font-size: 1.25rem;
+      }
 
-    p {
-      font-size: 0.9375rem;
+      p {
+        font-size: 0.9375rem;
+      }
     }
   }
 }
