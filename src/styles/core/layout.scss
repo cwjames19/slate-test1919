@@ -29,3 +29,20 @@ li {
 * {
   border-color: $color-page-borders;
 }
+
+main {
+  margin-bottom: 3.5rem;
+}
+
+.section {
+  display: block;
+  width: 100%;
+}
+
+div.page-width {
+  padding: 0 50px;
+
+  @include media-query($small) {
+    padding: 0 22px;
+  }
+}
