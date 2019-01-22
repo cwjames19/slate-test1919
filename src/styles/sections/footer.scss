@@ -11,7 +11,7 @@ footer {
   flex-flow: row nowrap;
   max-width: 1200px;
   margin: auto;
-  padding: 0 45px;
+  padding: 0 40px;
 
   .footer-blocks__item {
     flex-basis: 0;
@@ -97,8 +97,10 @@ footer hr {
   padding: 0 45px;
 
   &__social {
+    display: flex;
+    justify-content: flex-start;
     list-style: none;
-    margin: 1rem 0;
+    margin: 1.25rem 0;
     padding: 0;
 
     li {
@@ -141,7 +143,12 @@ footer hr {
   }
 
   .sub-footer__social {
-    margin: 1rem auto 0;
+    margin: 2rem auto;
+    justify-content: center;
+  }
+
+  .sub-footer__copyright {
+    text-align: center;
   }
 }
 
