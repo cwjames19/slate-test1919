@@ -1,5 +1,5 @@
 html {
-  background-color: $color-body;
+  background-color: $color-page-bg;
   box-sizing: border-box;
 }
 
@@ -12,4 +12,20 @@ html {
 body,
 html {
   height: 100%;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+* {
+  border-color: $color-page-borders;
 }

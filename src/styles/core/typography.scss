@@ -1,12 +1,21 @@
 html {
-  font-size: 62.5%;
+  font-size: $font-body-size;
 }
 
 body {
   font-family: $font-body;
-  font-weight: $font-body-weight;
   font-style: $font-body-style;
-  font-size: 1.6rem;
+  font-weight: $font-body-weight;
+  font-size: 1rem;
+}
+
+p,
+a,
+input,
+textarea,
+select {
+  font-weight: $font-body-weight;
+  margin: 0;
 }
 
 h1,
@@ -15,7 +24,33 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $font-heading;
+  padding: 0;
+  font-family: $font-headings-buttons;
+  font-weight: $font-headings-weight;
+}
+
+h1 {
+  @include calc-font-size(2.375rem, $font-headings-factor);
+}
+
+h2 {
+  @include calc-font-size(2.125rem, $font-headings-factor);
+}
+
+h3 {
+  @include calc-font-size(1.875rem, $font-headings-factor);
+}
+
+h4 {
+  @include calc-font-size(1.625rem, $font-headings-factor);
+}
+
+h5 {
+  @include calc-font-size(1.375rem, $font-headings-factor);
+}
+
+h6 {
+  @include calc-font-size(1.125rem, $font-headings-factor);
 }
 
 body,
@@ -25,6 +60,15 @@ button,
 select {
   -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
+}
+
+a {
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: $color-text-headings-links;
+  }
 }
 
 a:focus {
