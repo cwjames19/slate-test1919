@@ -1,13 +1,51 @@
 .image-with-text {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .image-with-text__image {
   flex: 0 1 50%;
-  min-width: 320px;
+  margin: 0 0 1.2rem;
 }
 
 .image-with-text__text {
-  flex: 1 1 50%;
+  display: block;
+  flex: 0 1 50%;
+  padding: 35px 0 35px 35px;
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 17.5px;
+    padding: 0;
+    color: $color-text-headings-links;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+    color: $color-text-body;
+  }
+
+  a {
+    margin: 17.5px 0 0;
+  }
+}
+
+@include media-query($small) {
+  .image-with-text__image {
+    flex: 1 1 100%;
+  }
+
+  .image-with-text__text {
+    flex: 1 1 100%;
+    padding: 35px 0 0;
+
+    h1, h2, h3, h4, h5, h6 {
+      font-size: 1.25rem;
+    }
+
+    p {
+      font-size: 0.9375rem;
+    }
+  }
 }
