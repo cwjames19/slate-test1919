@@ -151,11 +151,11 @@
     mobileAccess.classList.toggle("active");
   }
 
-  const handleDOMContentLoaded = function() {
+  const handleHeaderSectionLoaded = function() {
     mobileAccess.addEventListener('click', handleMobileAccessClick);
   };
 
-  document.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
+  document.addEventListener('DOMContentLoaded', handleHeaderSectionLoaded);
 </script>
 
 {% if section.settings.logo != blank %}
