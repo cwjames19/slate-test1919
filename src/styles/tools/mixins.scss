@@ -107,14 +107,3 @@
   margin: 0;
   clip: auto;
 }
-
-
-@mixin calc-font-size(
-  $font-size: $font-body-size,
-  $size: 1
-) {
-  $line-height: calc(#{$font-size} * 1.2);
-
-  font-size: calc(#{$font-size} * #{$size});
-  line-height: calc(#{$line-height} * #{$size});
-}

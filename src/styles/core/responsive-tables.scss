@@ -42,13 +42,13 @@
     padding-top: $grid-gutter / 2;
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       right: $grid-gutter / 2;
       left: $grid-gutter / 2;
       display: block;
-      border-bottom: 1px solid $color-borders;
+      border-bottom: 1px solid $color-border;
     }
   }
 }

@@ -1,12 +1,11 @@
 .image-with-text {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
 }
 
 .image-with-text__image {
   flex: 0 1 50%;
-  margin: 0 0 1.2rem;
+  min-width: 320px;
 }
 
 .image-with-text__text {
