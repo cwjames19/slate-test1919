@@ -1,4 +1,12 @@
 <style>
+  {% capture font-body-size-concat %}
+    {{ settings.font_body_size }}px
+  {% endcapture %}
+
+  {% capture font-headings-size-concat %}
+    {{ settings.font_headings_size }}px
+  {% endcapture %}
+
   {{ settings.font_heading | font_face }}
   {{ settings.font_body | font_face }}
 
@@ -9,15 +17,40 @@
   {{ font_body_bold_italic | font_face }}
 
   :root {
-    --color-accent: {{ settings.color_accent }};
-    --color-body-text: {{ settings.color_body_text }};
-    --color-main-background: {{ settings.color_main_bg }};
-    --color-border: {{ settings.color_body_text | color_lighten: 50 }};
+    --color-text-headings-links: {{ settings.color_text_headings_links }};
+    --color-text-body: {{ settings.color_text_body }};
+    --color-text-sale-price: {{ settings.color_text_sale_price }};
 
-    --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+    --color-buttons-primary: {{ settings.color_buttons_primary }};
+    --color-labels-primary: {{ settings.color_labels_primary }};
+    --color-labels-secondary: {{ settings.color_labels_secondary }};
+
+    --color-form-text: {{ settings.color_form_text }};
+    --color-form-borders: {{ settings.color_form_borders }};
+    --color-form-bg: {{ settings.color_form_bg }};
+
+    --color-announcement-bg: {{ settings.color_announcement_bg }};
+    --color-announcement-text: {{ settings.color_announcement_text }};
+
+    --color-image-overlay-text: {{ settings.color_image_overlay_text }};
+    --color-image-overlay-bg: {{ settins.color_image_overlay_bg }};
+    --opacity-image-overlay: {{ settings.opacity_image_overlay }};
+
+    --color-page-borders: {{ settings.color_page_borders }};
+    --color-page-bg: {{ settings.color_page_bg }};
+
+
+
+    --font-headings-buttons: {{ settings.font_headings_buttons.family }};
+    --font-headings-factor: {{ settings.font_headings_factor }};
+    --font-headings-weight: {{ settings.font_headings_buttons.weight }};
+
     --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
-    --font-body-weight: {{ settings.font_body.weight }};
+    --font-body-size: {{ font-body-size-concat }};
     --font-body-style: {{ settings.font_body.style }};
-    --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
+    --font-body-weight: {{ settings.font_body.weight }};
+    --font-body-bold-weight: 'bold';
+
+    --font-weight-products-bold: {{ settings.font_weight_products_bold }};
   }
 </style>

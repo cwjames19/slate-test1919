@@ -11,23 +11,112 @@
     "name": "Colors",
     "settings": [
       {
-        "type": "color",
-        "id": "color_accent",
-        "label": "Accent",
-        "default": "#c4cdd5",
-        "info": "Buttons and special ornaments"
+        "type": "header",
+        "content": "TEXT"
       },
       {
         "type": "color",
-        "id": "color_body_text",
+        "id": "color_text_headings_links",
+        "label": "Headings and links",
+        "default": "#3d4246"
+      },
+      {
+        "type": "color",
+        "id": "color_text_body",
+        "label": "Body Text",
+        "default": "#69727b"
+      },
+      {
+        "type": "color",
+        "id": "color_text_sale_price",
+        "label": "Sale Price",
+        "default": "#557b97"
+      },
+      {
+        "type": "header",
+        "content": "BUTTONS"
+      },
+      {
+        "type": "color",
+        "id": "color_buttons_primary",
+        "label": "Primary buttons",
+        "default": "#557b97"
+      },
+      {
+        "type": "color",
+        "id": "color_labels_primary",
+        "label": "Primary labels",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_labels_secondary",
+        "label": "Secondary labels and borders",
+        "default": "#3d4246"
+      },
+      {
+        "type": "header",
+        "content": "FORM FIELDS"
+      },
+      {
+        "type": "color",
+        "id": "color_form_text",
         "label": "Text",
-        "default": "#161d25"
+        "default": "#000000"
       },
       {
         "type": "color",
-        "id": "color_main_bg",
+        "id": "color_form_borders",
+        "label": "Borders",
+        "default": "#949494"
+      },
+      {
+        "type": "color",
+        "id": "color_form_bg",
         "label": "Background",
-        "default": "#fff"
+        "default": "#ffffff"
+      },
+      {
+        "type": "header",
+        "content": "IMAGE OVERLAYS"
+      },
+      {
+        "type": "color",
+        "id": "color_text_image_overlay_text",
+        "label": "Text",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_image_overlay_bg",
+        "label": "Background",
+        "default": "#949494"
+      },
+      {
+        "type": "range",
+        "id": "opacity_image_overlay",
+        "label": "Opacity",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 40,
+        "unit": "%"
+      },
+      {
+        "type": "header",
+        "content": "PAGE"
+      },
+      {
+        "type": "color",
+        "id": "color_page_borders",
+        "label": "Borders and lines",
+        "default": "#e8e9eb"
+      },
+      {
+        "type": "color",
+        "id": "color_page_bg",
+        "label": "Background",
+        "default": "#ffffff"
       }
     ]
   },
@@ -35,16 +124,49 @@
     "name": "Typography",
     "settings": [
       {
+        "type": "header",
+        "content": "HEADINGS AND BUTTONS"
+      },
+      {
         "type": "font_picker",
-        "id": "font_heading",
-        "default": "helvetica_n4",
-        "label": "Headings"
+        "id": "font_headings_buttons",
+        "label": "Font",
+        "default": "work_sans_n1"
+      },
+      {
+        "type": "range",
+        "id": "font_headings_factor",
+        "label": "Base heading size",
+        "min": 0.7,
+        "max": 1.5,
+        "step": 0.1,
+        "default": 1.0,
+        "unit": "x"
+      },
+      {
+        "type": "header",
+        "content": "BODY TEXT"
       },
       {
         "type": "font_picker",
         "id": "font_body",
-        "default": "helvetica_n4",
-        "label": "Body text"
+        "label": "Font",
+        "default": "work_sans_n1"
+      },
+      {
+        "type": "range",
+        "id": "font_body_size",
+        "label": "Base size",
+        "min": 14,
+        "max": 20,
+        "step": 1,
+        "default": 16,
+        "unit": "px"
+      },
+      {
+        "type": "checkbox",
+        "id": "font_weight_products_bold",
+        "label": "Bold product titles"
       }
     ]
   },
@@ -96,42 +218,50 @@
       {
         "type": "text",
         "id": "social_twitter_link",
-        "label": "Twitter link"
+        "label": "Twitter link",
+        "info": "https://twitter.com/shopify"
       },
       {
         "type": "text",
         "id": "social_facebook_link",
-        "label": "Facebook link"
+        "label": "Facebook link",
+        "info": "https://facebook.com/shopify"
       },
       {
         "type": "text",
         "id": "social_pinterest_link",
-        "label": "Pinterest link"
+        "label": "Pinterest link",
+        "info": "https://pinterest.com/shopify"
       },
       {
         "type": "text",
         "id": "social_instagram_link",
-        "label": "Instagram link"
+        "label": "Instagram link",
+        "info": "https://instagram.com/shopify"
       },
       {
         "type": "text",
         "id": "social_snapchat_link",
-        "label": "Snapchat link"
+        "label": "Snapchat link",
+        "info": "https://snapchat.com/shopify"
       },
       {
         "type": "text",
         "id": "social_tumblr_link",
-        "label": "Tumblr link"
+        "label": "Tumblr link",
+        "info": "https://tumblr.com/shopify"
       },
       {
         "type": "text",
         "id": "social_youtube_link",
-        "label": "Youtube link"
+        "label": "Youtube link",
+        "info": "https://youtube.com/shopify"
       },
       {
         "type": "text",
         "id": "social_vimeo_link",
-        "label": "Vimeo link"
+        "label": "Vimeo link",
+        "info": "https://vimeo.com/shopify"
       }
     ]
   },
