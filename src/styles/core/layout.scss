@@ -29,3 +29,19 @@ li {
 * {
   border-color: $color-page-borders;
 }
+
+.section {
+  display: block;
+  width: 100%;
+  padding: 55px 0;
+}
+
+div.page-width {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 50px;
+
+  @include media-query($small) {
+    padding: 0 22px;
+  }
+}

@@ -73,7 +73,7 @@
     {% endif %}
 
     <div class="sub-footer__copyright">
-      <small>{{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}. {{ powered_by_link }}</small>
+      <small>&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}. {{ powered_by_link }}</small>
     </div>
   </section>
 </footer>
@@ -170,7 +170,7 @@
       background-color: {{section.settings.footer_color_bg}};
     }
 
-    p, a, a:link, a:visited {
+    #footer-id p, #footer-id a, #footer-id a:link, #footer-id a:visited {
       color: {{section.settings.footer_color_text}};
     }
   </style>

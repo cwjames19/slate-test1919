@@ -64,9 +64,11 @@ select {
 
 a {
   text-decoration: none;
+}
 
-  &:link,
-  &:visited {
+a:link,
+a:visited {
+  &:not(.button):not(button) {
     color: $color-text-headings-links;
   }
 }
