@@ -29,17 +29,11 @@
 @import "./components/responsive-images";
 
 // Sections
-@import "./sections/header.scss";
-@import "./sections/footer.scss";
 @import "./sections/blog-posts";
 @import "./sections/collection-list";
 @import "./sections/featured-collection";
 @import "./sections/image-with-text";
-@import "./sections/image-with-text-overlay";
 
-// Vendors
-@import "./vendors/animate";
-
-// Templates
+// TemplatesS
 @import "./templates/gift_card";
 @import "./templates/product";
