@@ -15,6 +15,7 @@ config/shopify.yml
 npm-debug.log
 .env
 .env.*
+temp.liquid
 
 
 # Compiled source #
@@ -65,4 +66,3 @@ _site
 secrets.json
 .jekyll-metadata
 .ruby-version
-temp.liquid
