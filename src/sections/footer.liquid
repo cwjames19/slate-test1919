@@ -1,81 +1,52 @@
-<footer id="footer-id" >
-  {% if section.blocks.size != 0 %}
-    {% assign no_newsletter = false %}
-    {% for block in section.blocks %}
-      {% if block.type == "newsletter_signup" %}
-        {% assign no_newsletter = true %}
+<footer>
+
+  {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
+  <ul>
+    {% for social in social_accounts %}
+      {%- assign social_handle = social | handleize -%}
+      {% capture social_link %}social_{{ social_handle }}_link{% endcapture %}
+      {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
+
+      {% if settings[social_link] != blank %}
+        <li>
+          <a href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
+            {% include social_icon %}
+            <span class="icon-fallback-text">{{ social }}</span>
+          </a>
+        </li>
       {% endif %}
+
     {% endfor %}
-    <section class="footer-blocks__container">
-      {% for block in section.blocks %}
-        <div class="footer-blocks__item {{ 'footer-blocks--count-' | append: section.blocks.size }} {{ 'footer-blocks--' | append: block.type }} {{ 'footer-blocks--newsletter-' | append: no_newsletter }}">
-          {%- capture block_heading_id -%}{{block.type}}_heading{% endcapture %}
-          <p class="footer-blocks__item__heading">{{ block.settings[block_heading_id] }}</p>
-          {% if block.type == "menu" %}
-            {% assign my_linklist = linklists[block.settings.menu_linklist] %}
-            {% if my_linklist.links.size != 0 %}
-              <ul>
-                {% for link in my_linklist.links %}
-                  <li>
-                    <a href={{ link.url }} >
-                      <span>{{- link.title -}}</span>
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          {% elsif block.type == "text" %}
-            <p>{{ block.settings.text_richtext }}</p>
-          {% else %}
-            <form class="newsletter-signup">
-              <input type="email" class="newsletter-signup__input" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}" />
-              <button type="submit" class="newsletter-signup__submit">{{ "general.newsletter_form.submit" | t }}</button>
-            </form>
-          {% endif %}
-        </div>
-      {% endfor %}
-    </section>
+  </ul>
+
+  {% if section.settings.show_payment_icons %}
+    {% unless shop.enabled_payment_types == empty %}
+      <span class="visually-hidden">{{ 'layout.footer.payment_methods' | t }}</span>
+      <ul class="payment-icons">
+        {% for type in shop.enabled_payment_types %}
+          <li>
+            {{ type | payment_type_svg_tag: class: 'icon' }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endunless %}
   {% endif %}
 
-  <hr/>
-
-  <section class="sub-footer">
-    {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
-    <ul class="sub-footer__social">
-      {% for social in social_accounts %}
-        {%- assign social_handle = social | handleize -%}
-        {% capture social_link %}social_{{ social_handle }}_link{% endcapture %}
-        {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
-
-        {% if settings[social_link] != blank %}
-          <li>
-            <a href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
-              {% include social_icon %}
-              <span class="icon-fallback-text">{{ social }}</span>
-            </a>
-          </li>
-        {% endif %}
-
-      {% endfor %}
-    </ul>
-
-    {% if section.settings.show_payment_icons %}
-      {% unless shop.enabled_payment_types == empty %}
-        <span class="visually-hidden">{{ 'layout.footer.payment_methods' | t }}</span>
-        <ul class="payment-icons">
-          {% for type in shop.enabled_payment_types %}
-            <li>
-              {{ type | payment_type_svg_tag: class: 'icon' }}
-            </li>
-          {% endfor %}
-        </ul>
-      {% endunless %}
+  {% comment %}
+    {%- assign footer_linklist = section.settings.footer_linklist -%}
+    {% if linklists[footer_linklist].links.size > 0 %}
+      <ul>
+        {% for link in linklists[footer_linklist].links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
     {% endif %}
+  {% endcomment %}
 
-    <div class="sub-footer__copyright">
-      <small>&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}. {{ powered_by_link }}</small>
-    </div>
-  </section>
+
+  <div>
+    <small>{{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}. {{ powered_by_link }}</small>
+  </div>
 </footer>
 
 {% schema %}
@@ -83,96 +54,18 @@
     "name": "Footer",
     "settings": [
       {
-        "type": "header",
-        "content": "Payment Methods"
+        "type": "link_list",
+        "id": "footer_linklist99",
+        "label": "First menu",
+        "default": "footer"
       },
       {
         "type": "checkbox",
-        "id": "footer_payment_methods",
+        "id": "show_payment_icons99",
         "label": "Show payment icons",
         "default": false
-      },
-      {
-        "type": "header",
-        "content": "Color"
-      },
-      {
-        "type": "color",
-        "id": "footer_color_bg",
-        "label": "Background",
-        "default": "#f5f5f5"
-      },
-      {
-        "type": "color",
-        "id": "footer_color_text",
-        "label": "Text",
-        "default": "#3d4246"
-      }
-    ],
-    "max_blocks": 4,
-    "blocks": [
-      {
-        "name": "Quick links",
-        "type": "menu",
-        "settings": [
-          {
-            "type": "text",
-            "id": "menu_heading",
-            "label": "Heading",
-            "default": "Quick links"
-          },
-          {
-            "type": "link_list",
-            "id": "menu_linklist",
-            "label": "Menu",
-            "default": "main-menu"
-          }
-        ]
-      },
-      {
-        "name": "Talk about your business",
-        "type": "text",
-        "settings": [
-          {
-            "type": "text",
-            "id": "text_heading",
-            "label": "Heading",
-            "default": "Talk about your business"
-          },
-          {
-            "type": "richtext",
-            "id": "text_richtext",
-            "label": "Text",
-            "default": "<p>Share store details, promotions, or brand content with your customers.</p>"
-          }
-        ]
-      },
-      {
-        "name": "Newsletter signup",
-        "type": "newsletter_signup",
-        "limit": 1,
-        "settings": [
-          {
-            "type": "text",
-            "id": "newsletter_signup_heading",
-            "label": "Heading",
-            "default": "Newsletter"
-          }
-        ]
       }
     ]
   }
 
 {% endschema %}
-
-  <style>
-    #footer-id {
-      background-color: {{section.settings.footer_color_bg}};
-    }
-
-    #footer-id p, #footer-id a, #footer-id a:link, #footer-id a:visited {
-      color: {{section.settings.footer_color_text}};
-    }
-  </style>
-
-

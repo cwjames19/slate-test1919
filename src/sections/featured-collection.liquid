@@ -8,104 +8,57 @@
   Theme Store optional settings
   - Heading: title of the featured collection section
 {%- endcomment -%}
-<section class="section section-featured-collection">
-  <div class="page-width">
-    <div class="featured-collection__wrapper">
-      {% if section.settings.title != blank %}
-        <h6 class="featured-collection__header">{{ section.settings.title | escape | upcase }}</h6>
-      {% endif %}
+<section class="featured-collection">
+  {% if section.settings.title != blank %}
+    <h2 class="featured-collection__title">{{ section.settings.title | escape }}</h2>
+  {% endif %}
 
-      {%- assign collection = collections[section.settings.collection] -%}
-      {% assign max_items = section.settings.products_per_row | times: section.settings.rows %}
+  {%- assign collection = collections[section.settings.collection] -%}
 
-      <ul class="featured-collection__grid">
-        {% for product in collection.products limit: max_items %}
-          <li class="featured-collection__item">
-            <a href="{{ product.url | within: collection }}">
-              {% if product.featured_image != blank %}
-                <div class="featured-collection__image active">
-                  {% if product.featured_image != blank %}
-                    {% include 'responsive-image' with 
-                      image: product.featured_image,
-                      max_width: 480,
-                      max_height: 480
-                    %}
-                  {% else %}
-                    {% include 'responsive-image' with
-                      image: collection.image,
-                      max_width: 480,
-                      max_height: 480
-                    %}
-                  {% endif %}
-                </div>
-              {% endif %}
-
-              <h6 class="featured-collection__title">
-                <span class="active">{{ product.title | escape }}</span>
-              </h6>
-              {% if section.settings.show_vendors == true and product.vendor != blank %}
-                <span class="featured-collection__vendor">
-                  {{- product.vendor -}}
-                </span>
-              {% endif %}
-              <span class="featured-collection__price">
-                {% if product.compare_at_price > product.price %}
-                  {% if product.price_varies %}
-                    {%- assign sale_price = product.price | money -%}
-                    {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
-                  {% else %}
-                    {{ 'products.product.on_sale' | t }}
-                    {{ product.price | money }}
-                  {% endif %}
-                {% else %}
-                  {% if product.price_varies %}
-                    {%- assign price = product.price | money -%}
-                    {{ 'products.product.from_text_html' | t: price: price }}
-                  {% else %}
-                    {{ product.price | money }}
-                  {% endif %}
-                {% endif %}
-              </span>
-            </a>
-          </li>
-        {% else %}
-          {% for i in (1..6) %}
-            <a href="#" class="featured-collection__item">
-              {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-              {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
-
-              <p>{{ 'homepage.onboarding.product_title' | t }}</p>
-              <p>{{ 1999 | money }}</p>
-            </a>
-          {% endfor %}
-        {% endfor %}
-      </ul>
-      {% if section.settings.view_all == true %}
-        <div class="featured-collection__link">
-          <a class="button">
-            VIEW ALL
-          </a>
+  {% for product in collection.products limit: 6 %}
+    <a href="{{ product.url | within: collection }}" class="featured-collection-item">
+      {% if product.featured_image != blank %}
+        <div class="featured-collection__image">
+          {% include 'responsive-image' with
+            image: product.featured_image,
+            max_width: 480,
+            max_height: 480
+          %}
         </div>
       {% endif %}
-    </div>
-  </div>
-</section>
-<style>
-  .featured-collection__grid {
-    display: grid;
-    grid-template-columns: repeat({{ section.settings.products_per_row }}, minmax(0, 1fr));
-    grid-template-rows: repeat({{ section.settings.rows }}, minmax(0, 1fr));
-    grid-gap: 30px;
-  }
 
-  @media only screen and (max-width: 749px) {
-    .featured-collection__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
-      grid-gap: 22px;
-    }
-  }
-</style>
+      <p>{{ product.title | escape }}</p>
+      <span>
+        {% if product.compare_at_price > product.price %}
+          {% if product.price_varies %}
+            {%- assign sale_price = product.price | money -%}
+            {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+          {% else %}
+            {{ 'products.product.on_sale' | t }}
+            {{ product.price | money }}
+          {% endif %}
+        {% else %}
+          {% if product.price_varies %}
+            {%- assign price = product.price | money -%}
+            {{ 'products.product.from_text_html' | t: price: price }}
+          {% else %}
+            {{ product.price | money }}
+          {% endif %}
+        {% endif %}
+      </span>
+    </a>
+  {% else %}
+    {% for i in (1..6) %}
+      <a href="#" class="featured-collection-item">
+        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+        {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+
+        <p>{{ 'homepage.onboarding.product_title' | t }}</p>
+        <p>{{ 1999 | money }}</p>
+      </a>
+    {% endfor %}
+  {% endfor %}
+</section>
 
 {% schema %}
   {
@@ -118,39 +71,9 @@
         "default": "Featured collection"
       },
       {
-        "type": "collection",
         "id": "collection",
+        "type": "collection",
         "label": "Collection"
-      },
-      {
-        "type": "range",
-        "id": "products_per_row",
-        "label": "Products per row",
-        "min": 2,
-        "max": 5,
-        "default": 3,
-        "step": 1
-      },
-      {
-        "type": "range",
-        "id": "rows",
-        "label": "Rows",
-        "min": 1,
-        "max": 5,
-        "default": 2,
-        "step": 1
-      },
-      {
-        "type": "checkbox",
-        "id": "show_vendors",
-        "label": "Show product vendors",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "view_all",
-        "label": "Show 'View all' button",
-        "default": false
       }
     ],
     "presets": [

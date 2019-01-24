@@ -31,11 +31,3 @@
 
   @return $properties;
 }
-
-@function body-mod($num) {
-  @if $num < -10 or $num > 30 {
-    @return 1rem;
-  } @else {
-    @return 1rem + (1rem * $factor);
-  }
-}
